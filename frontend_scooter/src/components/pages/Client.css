@@ -1,0 +1,21 @@
+.pageClient .bouton .dic1 {
+ 
+    float: left;
+    margin: 20px;
+    align-items: center;
+}
+.pageClient .bouton .dic2 {
+    
+    float: right;
+    margin: 20px;
+    align-items: center;
+}
+.pageClient .bouton{
+    display: flex;
+}
+.pageClient {
+    width: 800px;
+}
+.pageClient .bouton .espace{
+    width: 900px;
+}
