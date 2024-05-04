@@ -35,8 +35,6 @@ import {
 } from "@react-pdf/renderer";
 import { Fab } from "@mui/material";
 function Achat() {
-
-
   const [open, setOpen] = useState(false);
   const [startDate, setStartDate] = useState("");
   const [dataTransactions, setDataTransactions] = useState([]);
@@ -114,7 +112,7 @@ function Achat() {
   return (
     <div className="contenaire">
       <div className="dic2">
-        <Fab color="primary" aria-label="add" onClick={handleClickOpen} >
+        <Fab color="primary" aria-label="add" onClick={handleClickOpen}>
           <AddIcon />
         </Fab>
       </div>
@@ -168,7 +166,6 @@ function Achat() {
           <Button type="submit">Add</Button>
         </DialogActions>
       </Dialog>
-      <br />
       <LocalizationProvider dateAdapter={AdapterDayjs}>
         <DatePicker
           onChange={(e) => {
@@ -177,8 +174,7 @@ function Achat() {
         />
       </LocalizationProvider>
 
-      <TableContainer component={Paper} className="table-container">
-
+      <TableContainer component={Paper} className="espace">
         <Table sx={{ minWidth: 800 }} aria-label="a dense table">
           <TableHead>
             <TableRow>

@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\Home;
+use App\Http\Controllers\NombreClient;
+use App\Http\Controllers\NombreScooter;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Route;
@@ -26,3 +29,6 @@ Route::get("/hello",function(){
 Route::resource('client',ClientController::class);
 Route::resource('achat',AchatController::class);
 Route::resource('scooter',ScooterController::class);
+Route::resource('home',Home::class);
+Route::resource('nombreScooter',NombreScooter::class);
+Route::resource('nombreClient',NombreClient::class);

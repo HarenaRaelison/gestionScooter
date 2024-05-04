@@ -1,0 +1,27 @@
+.contenaire {
+    width: 800px;
+    margin-top: 39%;
+}
+.espace{
+    margin-top: 3%;
+}
+
+.table-container {
+    margin-top: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .table-head-cell {
+    font-weight: bold;
+    background-color: #f0f0f0;
+  }
+  
+  .table-row {
+    transition: background-color 0.3s ease;
+  }
+  
+  .table-row:hover {
+    background-color: #f9f9f9;
+  }
+  

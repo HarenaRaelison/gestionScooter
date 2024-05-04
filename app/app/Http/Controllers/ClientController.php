@@ -31,13 +31,28 @@ class ClientController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'nomCli' => 'Required|string',
-            'emailCli' => 'Required|string',
-            'telCli' => 'Required|string',
-            'adrsCli' => 'Required|string'
+            'nomCli' => 'required|string',
+            'emailCli' => 'required|string',
+            'telCli' => 'required|string',
+            'adrsCli' => 'required|string'
         ]);
-        $client = Client::create($data);
-        return response()->json($client,201);
+    
+        // Récupérer tous les clients existants
+        $allClients = Client::all();
+    
+        // Vérifier si l'e-mail du nouveau client est déjà présent dans la base de données
+        foreach ($allClients as $client) {
+            if ($client->emailCli === $data['emailCli']) {
+                // L'e-mail existe déjà, retourner une réponse 400 (Bad Request)
+                return response()->json(['error' => 'L\'adresse e-mail existe déjà dans notre base de données.'], 400);
+            }
+        }
+    
+        // Si l'e-mail n'existe pas déjà, créer un nouveau client
+        $newClient = Client::create($data);
+    
+        // Retourner une réponse avec le client créé
+        return response()->json(['message' => 'Client créé avec succès', 'client' => $newClient], 201);
     }
 
     /**

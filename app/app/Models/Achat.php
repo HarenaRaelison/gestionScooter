@@ -11,10 +11,10 @@ class Achat extends Model
     use HasFactory;
     protected $fillable = ["scooters_id","client_id","qteAchat"];
     public function client(){ 
-        return $this->belongsTo(Client::class , 'client_id') ;
+        return $this->belongsTo(Client::class , 'client_id');
     }
     public function Scooter(){
-        return $this->belongsTo(Scooter::class , 'Scooters_id');
+        return $this->belongsTo(Scooter::class , 'scooters_id');
     }
 
 }

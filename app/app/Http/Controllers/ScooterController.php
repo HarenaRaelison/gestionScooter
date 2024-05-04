@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Scooter;
+
+
 
 class ScooterController extends Controller
 {
@@ -11,7 +14,8 @@ class ScooterController extends Controller
      */
     public function index()
     {
-        //
+        $scooter = Scooter::all();
+        return response()->json($scooter);
     }
 
     /**
@@ -27,7 +31,17 @@ class ScooterController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->validate([
+            'nomScooter' => 'Required|string',
+            'prixScooter' => "Required|integer",
+            'qteScooter' => 'Required|integer',
+            'couleurScooter' => 'Required|string',
+            'cateScooter' => 'Required|string'
+        ]);
+        $scooter = Scooter::create($data);
+        return response()->json($scooter);
+
+
     }
 
     /**
@@ -35,7 +49,7 @@ class ScooterController extends Controller
      */
     public function show(string $id)
     {
-        //
+        
     }
 
     /**
@@ -43,7 +57,7 @@ class ScooterController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        
     }
 
     /**
@@ -51,7 +65,7 @@ class ScooterController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        
     }
 
     /**
