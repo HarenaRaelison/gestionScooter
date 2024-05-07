@@ -16,34 +16,19 @@ import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
-import ReactPDF from "@react-pdf/renderer";
+import ReactPDF, { PDFDownloadLink } from "@react-pdf/renderer";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
-import Box from "@mui/material/Box";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
-import Select from "@mui/material/Select";
-import pdfDocFacture from "./pdfDocFacture";
-import {
-  Document,
-  Page,
-  Text,
-  View,
-  StyleSheet,
-  PDFViewer,
-} from "@react-pdf/renderer";
+import { Document, Page, Text, View, StyleSheet } from "@react-pdf/renderer";
 import { Fab } from "@mui/material";
+import PDFFile from "../PDFfacture";
+
 function Achat() {
-
-
   const [open, setOpen] = useState(false);
   const [startDate, setStartDate] = useState("");
   const [dataTransactions, setDataTransactions] = useState([]);
   const [filteredDataTransactions, setFilteredDataTransactions] = useState([]);
-  const generatePDF = () => {
-    ReactPDF.render(<pdfDocFacture />, `${__dirname}/example.pdf`);
-  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -111,10 +96,11 @@ function Achat() {
   const handleClickOpen = () => {
     setOpen(true);
   };
+
   return (
     <div className="contenaire">
       <div className="dic2">
-        <Fab color="primary" aria-label="add" onClick={handleClickOpen} >
+        <Fab color="primary" aria-label="add" onClick={handleClickOpen}>
           <AddIcon />
         </Fab>
       </div>
@@ -178,7 +164,6 @@ function Achat() {
       </LocalizationProvider>
 
       <TableContainer component={Paper} className="table-container">
-
         <Table sx={{ minWidth: 800 }} aria-label="a dense table">
           <TableHead>
             <TableRow>
@@ -205,7 +190,12 @@ function Achat() {
                   {transaction.scooter.prixScooter * transaction.qteAchat}
                 </TableCell>
                 <TableCell align="right">
-                  <button>Telecharger</button>
+               
+                        <PDFDownloadLink document={<PDFFile data={[transaction]} />} fileName="FORM">
+                          {({loading}) => (loading? <button>Loading...</button>: <button>download</button> )}
+                        </PDFDownloadLink>
+                    
+                  
                 </TableCell>
               </TableRow>
             ))}
